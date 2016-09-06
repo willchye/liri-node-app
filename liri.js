@@ -20,6 +20,10 @@ switch(action){
         myspotify();
     break;
 
+		case 'readrandom':
+				readrandom();
+		break;
+
 
 }
 
@@ -105,6 +109,30 @@ spotify.search({ type: 'track', query: value }, function(err, data) {
   console.log("album name: " + data.tracks.items[0].album.name);
     console.log("artist name: " + data.tracks.items[0].artists[0].name);
       console.log("preview link: " +data.tracks.items[0].external_urls.spotify);
+
+})
+};
+
+
+//read===========================================================================
+
+
+function readrandom(){
+fs.readFile("random.txt", "utf8", function(error, data) {
+	if(error) {
+		return console.log(error);
+	}
+
+	console.log(data);
+
+
+	var dataArr = data.split(',');
+
+	var trimmedArr = dataArr.map(function(item) {
+		return item.trim().length;
+	});
+	console.log(dataArr);
+	console.log(trimmedArr);
 
 })
 };
